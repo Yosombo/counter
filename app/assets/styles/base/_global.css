@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: $mainGrey;
+  font-family: "Rajdhani", sans-serif;
+}
+.container {
+  margin: 0 auto;
+  padding: 3rem 3rem;
+  width: 100%;
+  background-color: #2a2c30;
+  height: 100vh;
+  overflow: hidden;
+  border: 1px red solid;
+
+  @mixin atSmall {
+    width: 530px;
+  }
+  @mixin atMedium {
+    width: 800px;
+  }
+}

@@ -1,0 +1,123 @@
+@import "../base/_variables.css";
+.modal {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(900px);
+  transition: all 0.4s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+
+  &__title {
+    font-size: 1rem;
+    text-align: center;
+    padding-bottom: 1rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    line-height: 1;
+    border: 1px solid red;
+
+    & {
+      color: $mainGreen;
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+  }
+  &--is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0px);
+    transition: all 0.4s ease-in-out;
+  }
+}
+.counter-number {
+  padding: 0rem 0 1rem 0;
+  line-height: 1;
+  font-size: 9rem;
+  background: -webkit-linear-gradient(
+    -90deg,
+    rgba(89, 137, 33, 1) 10%,
+    rgba(255, 255, 0, 1) 90%
+  );
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+  text-shadow: 0px 0px 20px rgba(89, 137, 33, 0.5);
+  font-weight: 100;
+}
+.circle {
+  position: relative;
+  width: 70vw;
+  height: 70vw;
+  background: linear-gradient(
+    to bottom left,
+    rgba(89, 137, 33, 1) 10%,
+    rgba(255, 255, 0, 1) 90%
+  );
+  border-radius: 50%;
+  margin: 0 auto;
+  box-shadow: 0px 0px 40px black;
+  transition: box-shadow 0.2s ease-in;
+
+  @mixin atSmall {
+    width: 400px;
+    height: 400px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    left: 5px;
+    bottom: 5px;
+    background: #2a2c30;
+    border-radius: 50%;
+  }
+
+  &:hover {
+    box-shadow: 0px 0px 60px #598921;
+  }
+
+  &__add {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    width: 22vw;
+    height: 3px;
+    background: linear-gradient(
+      -90deg,
+      rgba(89, 137, 33, 1) 10%,
+      rgba(255, 255, 0, 1) 90%
+    );
+    transform: translateX(-50%);
+    box-shadow: 0px 0px 2px $mainYellow;
+    z-index: 4;
+    @mixin atSmall {
+      width: 100px;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      height: 22vw;
+      width: 3px;
+      background: linear-gradient(
+        rgba(89, 137, 33, 1) 10%,
+        rgba(255, 255, 0, 1) 90%
+      );
+      transform: translateY(50%);
+      box-shadow: 0px 0px 2px $mainYellow;
+      z-index: 4;
+      @mixin atSmall {
+        height: 100px;
+      }
+    }
+  }
+}

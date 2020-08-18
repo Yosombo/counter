@@ -1,0 +1,38 @@
+@import "../base/_variables.css";
+.banner {
+  font-size: 1rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  line-height: 1;
+  cursor: pointer;
+
+  & h3 {
+    color: $mainGreen;
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+  &__plus {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background-color: #ffff00;
+    transform-origin: 0 50%;
+    box-shadow: 0px 0px 3px #ffff00;
+
+    &::after {
+      content: "";
+      width: 2px;
+      height: 24px;
+      position: absolute;
+      left: 11px;
+      bottom: -12px;
+      background-color: #ffff00;
+      box-shadow: 0px 0px 2px #ffff8e;
+    }
+  }
+}
