@@ -14,8 +14,8 @@ body {
   width: 100%;
   background-color: #2a2c30;
   height: 100vh;
+
   overflow: hidden;
-  border: 1px red solid;
 
   @mixin atSmall {
     width: 530px;

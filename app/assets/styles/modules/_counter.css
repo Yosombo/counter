@@ -19,7 +19,6 @@
     display: flex;
     justify-content: center;
     line-height: 1;
-    border: 1px solid red;
 
     & {
       color: $mainGreen;
@@ -61,7 +60,7 @@
   border-radius: 50%;
   margin: 0 auto;
   box-shadow: 0px 0px 40px black;
-  transition: box-shadow 0.2s ease-in;
+  transition: all 0.2s ease-in;
 
   @mixin atSmall {
     width: 400px;
@@ -79,8 +78,9 @@
     border-radius: 50%;
   }
 
-  &:hover {
-    box-shadow: 0px 0px 60px #598921;
+  &--is-clicked {
+    box-shadow: 0px 0px 100px #598921;
+    transform: scale(0.99);
   }
 
   &__add {
