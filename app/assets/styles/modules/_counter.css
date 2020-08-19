@@ -3,7 +3,7 @@
   opacity: 0;
   visibility: hidden;
   transform: translateX(900px);
-  transition: all 0.4s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.56, -0.02, 0.27, 1.07);
   position: fixed;
   top: 0;
   left: 0;
@@ -12,25 +12,22 @@
   z-index: 5;
 
   &__title {
-    font-size: 1rem;
     text-align: center;
     padding-bottom: 1rem;
     position: relative;
     display: flex;
     justify-content: center;
     line-height: 1;
-
-    & {
-      color: $mainGreen;
-      font-size: 1.5rem;
-      font-weight: 400;
-    }
+    color: $mainGreen;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-transform: capitalize;
   }
   &--is-visible {
     opacity: 1;
     visibility: visible;
     transform: translateX(0px);
-    transition: all 0.4s ease-in-out;
+    transition: all 0.4s cubic-bezier(0.56, -0.02, 0.27, 1.07);
   }
 }
 .counter-number {

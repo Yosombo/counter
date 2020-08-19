@@ -3,6 +3,8 @@
   grid-template-areas:
     "a a a a a a a a a b"
     "c c c c c c c c c c";
+  opacity: 1;
+  transition: all 2s cubic-bezier(0.56, -0.02, 0.27, 1.07);
 
   &__item {
     grid-area: a;

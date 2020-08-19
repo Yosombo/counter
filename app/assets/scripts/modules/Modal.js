@@ -9,6 +9,7 @@ class Modal {
     this.ind;
     this.renderer();
     this.injectHTML();
+
     this.modal = document.querySelector(".modal");
     this.toHome = document.querySelector(".footer__right");
 
@@ -29,6 +30,10 @@ class Modal {
     this.item.addEventListener("click", (e) => {
       if (e.target.className == "flexer__item__title") {
         this.openModal();
+        this.renderName();
+        this.renderNumber();
+        this.addNumber();
+        this.deleteNumber();
       }
     });
 
@@ -37,12 +42,8 @@ class Modal {
 
   openModal() {
     this.modal.classList.add("modal--is-visible");
-    console.log(this.ind);
-    this.renderName();
-    this.renderNumber();
-    this.addNumber();
-    this.deleteNumber();
   }
+
   deleteNumber() {
     document.querySelector(".minus").addEventListener("click", () => {
       this.addCounter.allItems[this.ind].number =
@@ -56,6 +57,20 @@ class Modal {
     });
   }
   addNumber() {
+    document.addEventListener("keypress", (e) => {
+      if (e.keyCode === 32) {
+        this.addCounter.allItems[this.ind].number =
+          this.addCounter.allItems[this.ind].number + 1;
+        document.querySelector(".circle").classList.add("circle--is-clicked");
+        this.renderNumber();
+        this.addCounter.saveToLocalSt();
+        setTimeout(() => {
+          document
+            .querySelector(".circle")
+            .classList.remove("circle--is-clicked");
+        }, 250);
+      }
+    });
     document.querySelector(".circle").addEventListener("click", () => {
       this.addCounter.allItems[this.ind].number =
         this.addCounter.allItems[this.ind].number + 1;

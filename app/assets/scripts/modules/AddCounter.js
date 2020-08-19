@@ -12,22 +12,25 @@ class AddCounter {
     this.number = 0;
     this.events();
   }
-
+  askName() {
+    const a = prompt(`Enter a name for this counter`);
+    this.name = a;
+    return this.name;
+  }
   events() {
     this.banner.addEventListener("click", () => {
       // Тоолуурын нэрийг авах
-      this.name = prompt(`Enter counter`);
-
+      this.askName();
       // Доорх нөхцөлийг хангаж байвал
       if (this.name !== null && this.name !== "") {
         // Тухайн тоолууранд зориулан тусгай id нэр бүхий обект үүсгэх
         this.addToCounter();
-
         // Бүх тоолуурыг агуулагч массивруу нэр id бүхий тоолуурыг нэмэх
         this.allItems.push(this.counter);
         this.saveToLocalSt();
         // htmlийг үндсэн цэсрүү нэмэх
         this.injectHtml();
+        window.location.reload(false);
       } else {
         console.log(`enter counter name`);
       }
@@ -39,7 +42,7 @@ class AddCounter {
     this.items.addEventListener("click", (e) => {
       if (e.target.className == "flexer__close") {
         //Эцэг элемэнтэнд листэнэр тавин, эвэнт баблин ашиглан тухайн элэмэнимйг олж авах
-        console.log(`clicked`);
+
         const li = e.target.parentNode;
 
         // дэлгэцнээс устгах
@@ -54,7 +57,6 @@ class AddCounter {
         this.allItems.splice(index, 1);
 
         this.saveToLocalSt();
-        console.log(this.allItems);
       }
     });
   }
