@@ -1,4 +1,8 @@
+const currentTask = process.env.npm_lifecycle_event;
 const path = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const htmlWebpackPlugin = require("html-webpack-plugin");
 const postCSSPlugins = [
   require("postcss-import"),
   require("postcss-mixins"),
@@ -7,14 +11,38 @@ const postCSSPlugins = [
   require("postcss-hexrgba"),
   require("autoprefixer"),
 ];
-module.exports = {
+let cssConfig = {
+  test: /\.css$/i,
+  use: [
+    "css-loader",
+    {
+      loader: "postcss-loader",
+      options: { plugins: postCSSPlugins },
+    },
+  ],
+};
+
+let config = {
   entry: "./app/assets/scripts/App.js",
-  output: {
+  plugins: [
+    new htmlWebpackPlugin({
+      filename: "index.html",
+      template: "./app/index.html",
+    }),
+  ],
+  module: {
+    rules: [cssConfig],
+  },
+};
+
+if (currentTask === "dev") {
+  cssConfig.use.unshift("style-loader");
+  postCSSPlugins.push(require("cssnano"));
+  config.output = {
     filename: "bundled.js",
     path: path.resolve(__dirname, "app"),
-  },
-
-  devServer: {
+  };
+  config.devServer = {
     before: function (app, server) {
       server._watch("./app/**/*.html");
     },
@@ -22,23 +50,33 @@ module.exports = {
     hot: true,
     port: 3000,
     host: "0.0.0.0",
-  },
+  };
+  config.mode = "development";
+}
 
-  mode: "development",
-
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: [
-          "style-loader",
-          "css-loader",
-          {
-            loader: "postcss-loader",
-            options: { plugins: postCSSPlugins },
-          },
-        ],
+if (currentTask === "build") {
+  config.module.rules.push({
+    test: /\.js$/,
+    exclude: /(node_modules)/,
+    use: {
+      loader: "babel-loader",
+      options: {
+        presets: ["@babel/preset-env"],
       },
-    ],
-  },
-};
+    },
+  });
+  cssConfig.use.unshift(MiniCssExtractPlugin.loader);
+  config.output = {
+    filename: "[name].[chunkhash].js",
+    chunkFilename: "[name].[chunkhash].js",
+    path: path.resolve(__dirname, "docs"),
+  };
+
+  config.mode = "production";
+  config.plugins.push(
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({ filename: "styles.[chunkhash].css" })
+  );
+}
+
+module.exports = config;

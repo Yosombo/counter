@@ -12,11 +12,14 @@ class AddCounter {
     this.number = 0;
     this.events();
   }
+
   askName() {
     const a = prompt(`Enter a name for this counter`);
     this.name = a;
+
     return this.name;
   }
+
   events() {
     this.banner.addEventListener("click", () => {
       // Тоолуурын нэрийг авах
@@ -30,7 +33,7 @@ class AddCounter {
         this.saveToLocalSt();
         // htmlийг үндсэн цэсрүү нэмэх
         this.injectHtml();
-        window.location.reload(false);
+        window.location.reload(true);
       } else {
         console.log(`enter counter name`);
       }
@@ -60,6 +63,7 @@ class AddCounter {
       }
     });
   }
+
   // localStorage рүү бүх тоолуурыг агуулсан массивийг хадгалах
   saveToLocalSt() {
     localStorage.setItem("total-Items", JSON.stringify(this.allItems));

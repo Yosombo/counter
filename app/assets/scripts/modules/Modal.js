@@ -37,7 +37,7 @@ class Modal {
       }
     });
 
-    this.toHome.addEventListener("click", (e) => this.closeModal(e));
+    this.toHome.addEventListener("click", () => this.closeModal().then);
   }
 
   openModal() {
@@ -84,8 +84,9 @@ class Modal {
       }, 250);
     });
   }
-  closeModal(e) {
+  closeModal() {
     this.modal.classList.remove("modal--is-visible");
+    window.location.reload(true);
   }
 
   injectHTML() {
