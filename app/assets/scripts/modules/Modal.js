@@ -101,7 +101,7 @@ class Modal {
         <div class="counter-number">
         <span class="--number--"></span>
         </div>
-        <div class="circle">
+        <div class="circle loud-link-click" data-sound=https://loudlinks.rocks/sounds/{{type}}/magic.{{type}}>
           <div class="circle__add"></div>
         </div>
         <div class="footer">

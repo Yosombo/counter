@@ -1,12 +1,14 @@
 import "../styles/style.css";
 import AddCounter from "./modules/AddCounter";
 import Modal from "./modules/Modal";
+import Loudlink from "./modules/loudlink";
 
 const state = {};
 
 state.addcounter = new AddCounter();
 state.modal = new Modal();
-
+state.loudlink = new Loudlink();
+state.addcounter.events();
 window.addEventListener("load", () => {
   if (!state.addcounter.allItems) state.addcounter.allItems;
 
@@ -14,18 +16,18 @@ window.addEventListener("load", () => {
     document.querySelector(".items").insertAdjacentHTML(
       "afterbegin",
       `
-      <div class="flexer" data-counterid=${e.id}>
-      <div class="flexer__item to-modal">
-        <h4 class="flexer__item__title">${e.name}</h4>
-      </div>
-      <div class="flexer__close">x</div>
-      <div class="flexer__item__line"></div>
+    <div class="flexer" data-counterid=${e.id}>
+    <div class="flexer__item to-modal">
+      <h4 class="flexer__item__title">${e.name}</h4>
     </div>
-      `
+    <div class="flexer__close">x</div>
+    <div class="flexer__item__line"></div>
+  </div>
+    `
     );
   });
-  state.addcounter.deleteItem();
 });
+state.addcounter.deleteItem();
 
 if (module.hot) {
   module.hot.accept();

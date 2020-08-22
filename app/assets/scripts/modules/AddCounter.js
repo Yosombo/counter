@@ -8,16 +8,11 @@ class AddCounter {
     this.banner = document.querySelector(".banner");
     this.items = document.querySelector(".items");
     this.counter;
-    this.name;
     this.number = 0;
-    this.events();
   }
 
   askName() {
-    const a = prompt(`Enter a name for this counter`);
-    this.name = a;
-
-    return this.name;
+    this.name = prompt(`Enter a name for this counter`);
   }
 
   events() {
@@ -25,7 +20,7 @@ class AddCounter {
       // Тоолуурын нэрийг авах
       this.askName();
       // Доорх нөхцөлийг хангаж байвал
-      if (this.name !== null && this.name !== "") {
+      if (this.name !== null && this.name !== "" && this.name !== " ") {
         // Тухайн тоолууранд зориулан тусгай id нэр бүхий обект үүсгэх
         this.addToCounter();
         // Бүх тоолуурыг агуулагч массивруу нэр id бүхий тоолуурыг нэмэх
